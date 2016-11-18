@@ -1,0 +1,9 @@
+*.bak
+*.swp
+*.*~
+out/
+build/
+dist/
+.idea/
+*.class
+*.iml
