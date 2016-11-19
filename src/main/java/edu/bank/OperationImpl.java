@@ -13,19 +13,16 @@ public abstract class OperationImpl implements MutableOperation {
     private OperationStatus status = OperationStatus.OPEN;
     private java.util.Vector<Consumer<Operation>> listeners = new java.util.Vector<Consumer<Operation>>();
 
-    @Override
     public Date getCreationTime() {
         return this.creationTime;
     }
 
     private Date lastChangeTime;
 
-    @Override
     public Date getLastChangeTime() {
         return null;
     }
 
-    @Override
     public OperationStatus getStatus() {
         return this.status;
     }
@@ -45,12 +42,10 @@ public abstract class OperationImpl implements MutableOperation {
         this.listeners.forEach((l) -> l.accept(this));
     }
 
-    @Override
     public void addStatusChangeListener(Consumer<Operation> listener) {
         this.listeners.add(listener);
     }
 
-    @Override
     public boolean isValid() {
         return true;
     }

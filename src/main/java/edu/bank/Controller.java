@@ -19,7 +19,7 @@ class KIRController {
     }
 
     public void process() {
-        ops.stream().map((op) -> op).forEach((op) -> op.setStatus(OperationStatus.DONE));
+        ops.stream().map((op) -> (MutableOperation)op).forEach((op) -> op.setStatus(OperationStatus.DONE));
     }
 }
 

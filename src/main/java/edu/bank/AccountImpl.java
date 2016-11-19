@@ -11,32 +11,27 @@ import java.util.Vector;
 public class AccountImpl implements MutableAccount {
     private String externalId;
 
-    @Override
     public String getExternalNo() {
         return externalId;
     }
 
     private Date creationDate;
 
-    @Override
     public Date getCreationDate() {
         return null;
     }
 
     private BigDecimal balance = new BigDecimal(0);
 
-    @Override
     public BigDecimal getBalance() {
         return null;
     }
 
-    @Override
     public OperationResult addOperation(Operation op) {
         this.operations.add(op);
         return null;
     }
 
-    @Override
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
@@ -44,7 +39,6 @@ public class AccountImpl implements MutableAccount {
     private Owner owner;
     private Vector<Operation> operations = new Vector<Operation>();
 
-    @Override
     public Owner getOwner() {
         return null;
     }

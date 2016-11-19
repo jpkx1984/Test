@@ -21,19 +21,16 @@ public class BankImpl implements Bank {
         this.controller = new Controller(this, this.history);
     }
 
-    @Override
     public Controller getController() {
         return this.controller;
     }
 
     private java.util.HashMap<String, Account> accounts = new java.util.HashMap<String, Account>();
 
-    @Override
     public Account findAccount(String acc) {
         return this.accounts.get(acc);
     }
 
-    @Override
     public void addAccount(Account acc) {
         if (this.accounts.containsKey(acc.getExternalNo())) {
             throw new UnsupportedOperationException();
@@ -42,7 +39,6 @@ public class BankImpl implements Bank {
         this.accounts.put(acc.getExternalNo(), acc);
     }
 
-    @Override
     public Iterable<Account> getAccounts() {
         return this.accounts.values();
     }
