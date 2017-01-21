@@ -1,4 +1,6 @@
-package edu.bank;
+package edu.bank.ops;
+
+import edu.bank.ops.Operation;
 
 import java.math.BigDecimal;
 

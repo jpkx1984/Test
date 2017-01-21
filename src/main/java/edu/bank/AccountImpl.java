@@ -18,39 +18,57 @@ public class AccountImpl implements MutableAccount {
     private Date creationDate;
 
     public Date getCreationDate() {
-        return null;
+        return this.creationDate;
     }
 
     private BigDecimal balance = new BigDecimal(0);
 
     public BigDecimal getBalance() {
-        return null;
+        return this.balance;
     }
 
-    public OperationResult addOperation(Operation op) {
-        this.operations.add(op);
-        return null;
+    @Override
+    public BigDecimal getAvailableFunds() {
+        return this.getBalance().compareTo(BigDecimal.ZERO) > 0 ? this.getBalance() : BigDecimal.ZERO;
     }
+
+    private Bank bank;
+
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
     private Owner owner;
-    private Vector<Operation> operations = new Vector<Operation>();
 
     public Owner getOwner() {
-        return null;
+        return this.owner;
     }
 
-    AccountImpl(Owner owner, String externalNo) {
+    @Override
+    public Bank getBank() {
+        return this.bank;
+    }
+
+    AccountImpl(Bank bank, Owner owner, String externalNo) {
+        this.bank = bank;
         this.externalId = externalNo;
         this.creationDate = Calendar.getInstance().getTime();
+        this.owner = owner;
     }
 
-    AccountImpl(Owner owner, String externalNo, BigDecimal balance) {
+    AccountImpl(Bank bank, Owner owner, String externalNo, BigDecimal balance) {
         this.externalId = externalNo;
         this.creationDate = Calendar.getInstance().getTime();
         this.balance = balance;
+    }
+
+    @Override
+    public void doTick(Date d) {
+    }
+
+    @Override
+    public void acceptVisitor(BankVisitor v) {
+        v.visit(this);
     }
 }

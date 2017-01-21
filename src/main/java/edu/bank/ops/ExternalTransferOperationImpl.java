@@ -1,4 +1,8 @@
-package edu.bank;
+package edu.bank.ops;
+
+import edu.bank.BankHandle;
+import edu.bank.ops.ExternalTransferOperation;
+import edu.bank.ops.OperationImpl;
 
 import java.math.BigDecimal;
 
@@ -12,6 +16,11 @@ public class ExternalTransferOperationImpl extends OperationImpl implements Exte
     @Override
     public String getName() {
         return "Przelew zewnętrzny";
+    }
+
+    @Override
+    public void execute(BankHandle bh) {
+
     }
 
     @Override

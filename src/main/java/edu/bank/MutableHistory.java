@@ -1,5 +1,7 @@
 package edu.bank;
 
+import edu.bank.ops.Operation;
+
 /**
  * Created by jkrysztofiak on 2016-11-05.
  */

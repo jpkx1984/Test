@@ -5,4 +5,5 @@ package edu.bank;
  */
 public interface SavingsAccount extends Account {
     void setInterestStrategy(InterestStrategy str);
+    InterestStrategy getInterestStrategy();
 }
