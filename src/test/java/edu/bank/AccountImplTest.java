@@ -19,8 +19,8 @@ public class AccountImplTest {
     @BeforeMethod
     public void setUp() throws Exception {
         this.owner = new OwnerImpl("John", "DOE", "123456");
-        this.acc = new AccountImpl(owner, "ACC1");
-        this.acc2 = new AccountImpl(owner, "ACC2", BigDecimal.valueOf(1000));
+        //this.acc = new AccountImpl(owner, "ACC1");
+        //this.acc2 = new AccountImpl(owner, "ACC2", BigDecimal.valueOf(1000));
     }
 
     @AfterMethod

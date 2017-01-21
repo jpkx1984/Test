@@ -1,7 +1,5 @@
 package edu.bank;
 
-import edu.bank.ops.OperationStatus;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -41,6 +39,12 @@ public class CreditAccountDecorator implements CreditAccount, Tickable {
     }
 
     @Override
+    public BigDecimal getAvailableFunds() {
+        // TODO:
+        return getBalance();
+    }
+
+    @Override
     public Owner getOwner() {
         return this.account.getOwner();
     }
@@ -48,6 +52,11 @@ public class CreditAccountDecorator implements CreditAccount, Tickable {
     @Override
     public Bank getBank() {
         return this.account.getBank();
+    }
+
+    @Override
+    public boolean isBalanceMutable() {
+        return this.account.isBalanceMutable();
     }
 
     private Date prevDate;

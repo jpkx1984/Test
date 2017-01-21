@@ -10,6 +10,7 @@ import java.util.Vector;
  */
 public class AccountImpl implements MutableAccount {
     private String externalId;
+    private AccountState state = new AccountStateOpen();
 
     public String getExternalNo() {
         return externalId;
@@ -36,7 +37,27 @@ public class AccountImpl implements MutableAccount {
 
 
     public void setBalance(BigDecimal balance) {
+        if (!this.isBalanceMutable())
+            throw new UnsupportedOperationException();
+
         this.balance = balance;
+    }
+
+    @Override
+    public void addBalance(BigDecimal delta) {
+        this.setBalance(this.getBalance().add(delta));
+    }
+
+    @Override
+    public void subtractBalance(BigDecimal delta) {
+        this.setBalance(this.getBalance().subtract(delta));
+    }
+
+    @Override
+    public void setState(AccountState state) {
+        if (state == null) throw new IllegalArgumentException();
+
+        this.state = state;
     }
 
     private Owner owner;
@@ -58,6 +79,8 @@ public class AccountImpl implements MutableAccount {
     }
 
     AccountImpl(Bank bank, Owner owner, String externalNo, BigDecimal balance) {
+        this.bank = bank;
+        this.owner = owner;
         this.externalId = externalNo;
         this.creationDate = Calendar.getInstance().getTime();
         this.balance = balance;
@@ -70,5 +93,11 @@ public class AccountImpl implements MutableAccount {
     @Override
     public void acceptVisitor(BankVisitor v) {
         v.visit(this);
+    }
+
+
+    @Override
+    public boolean isBalanceMutable() {
+        return this.state.isBalanceMutable(this);
     }
 }

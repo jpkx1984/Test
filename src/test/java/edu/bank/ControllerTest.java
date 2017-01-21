@@ -25,6 +25,7 @@ public class ControllerTest {
     public void setUp() throws Exception {
         this.owner = new OwnerImpl("Jan", "Kowalski", "2222");
         this.interestStrategy = new SimpleInterestStrategy();
+        /*
         this.acc1 = new AccountImpl(this.owner, "Acc1", BigDecimal.valueOf(1000));
         this.acc2 = new AccountImpl(this.owner, "Acc2", BigDecimal.valueOf(1000));
         this.acc3 = null;
@@ -33,7 +34,7 @@ public class ControllerTest {
         this.bank.addAccount(acc1);
         this.bank.addAccount(acc2);
         this.bank.addAccount(acc3);
-
+        */
 
         //this.controller = this.bank.getController();
     }

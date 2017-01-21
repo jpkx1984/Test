@@ -7,4 +7,7 @@ import java.math.BigDecimal;
  */
 public interface MutableAccount extends Account {
     void setBalance(BigDecimal balance);
+    void addBalance(BigDecimal delta);
+    void subtractBalance(BigDecimal delta);
+    void setState(AccountState state);
 }

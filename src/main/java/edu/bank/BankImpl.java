@@ -14,22 +14,26 @@ public class BankImpl implements Bank, Tickable {
     }
     private ArrayList<Operation> ops = new ArrayList<Operation>();
     private java.util.Date currentDate;
-    private BankHandle bankHandle = new BankHandle() {
+    private BankPrivateData bankHandle = new BankPrivateData() {
         private java.util.Date d;
 
+        public Bank getSelf() {
+            return BankImpl.this;
+        }
+
         @Override
-        public MutableAccount getMutableAccount(Account acc) {
+        public MutableAccount asMutableAccount(Account acc) {
             // TODO:
             return (MutableAccount)acc;
         }
 
         @Override
         public Date getDate() {
-            return this.currentDate;
+            return BankImpl.this.currentDate;
         }
     };
 
-    protected BankHandle getBankHandle() {
+    protected BankPrivateData getBankHandle() {
         return this.bankHandle;
     }
 
@@ -79,8 +83,10 @@ public class BankImpl implements Bank, Tickable {
     private AccountFactory accountFactory = new AccountFactory() {
         @Override
         public Account newAccount(Owner o) {
-            final Account acc = new AccountImpl(BankImpl.this, o, "xxxa");
+            final Account acc = new AccountImpl(BankImpl.this, o, KirMediatorImpl.getInstance().newId());
             BankImpl.this.addAccount(acc);
+
+            return acc;
         }
 
         @Override

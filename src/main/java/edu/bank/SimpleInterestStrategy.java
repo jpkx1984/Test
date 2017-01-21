@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 class SimpleInterestStrategy implements InterestStrategy {
 
     @Override
-    public BigDecimal getInterestAmount(Account acc, long interval) {
+    public BigDecimal getInterestAmount(Account acc) {
         return acc.getBalance().divide(BigDecimal.valueOf(10));
     }
 }

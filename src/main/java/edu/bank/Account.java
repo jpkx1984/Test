@@ -13,4 +13,5 @@ public interface Account extends Tickable, BankVisitable {
     BigDecimal getAvailableFunds();
     Owner getOwner();
     Bank getBank();
+    boolean isBalanceMutable();
 }

@@ -7,10 +7,19 @@ import java.util.function.Consumer;
 /**
  * Created by jkrysztofiak on 2016-11-05.
  */
-public abstract class OperationImpl implements Operation {
+public abstract class OperationBase implements Operation {
     private Date creationTime;
-    private OperationStatus status = new OperationStateOpen();
+    private OperationState status = new OperationStateOpen();
     private java.util.Vector<Consumer<Operation>> listeners = new java.util.Vector<Consumer<Operation>>();
+    private String comment = "";
+
+    public String getComment() {
+        return this.comment;
+    }
+
+    protected  void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public Date getCreationTime() {
         return this.creationTime;
@@ -22,16 +31,16 @@ public abstract class OperationImpl implements Operation {
         return this.lastChangeTime;
     }
 
-    protected void setStatus(OperationStatus st) {
+    protected void setStatus(OperationState st) {
         this.lastChangeTime = Calendar.getInstance().getTime();
         this.status = st;
     }
 
-    public OperationStatus getStatus() {
+    public OperationState getStatus() {
         return this.status;
     }
 
-    protected  OperationImpl() {
+    protected OperationBase() {
         this.creationTime = Calendar.getInstance().getTime();
     }
 
@@ -50,4 +59,7 @@ public abstract class OperationImpl implements Operation {
     public boolean isFinished() {
         return this.status.isFinished();
     }
+
+    @Override
+    public boolean isOpen() { return this.status.isOpen(); }
 }

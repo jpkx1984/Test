@@ -3,10 +3,10 @@ package edu.bank.ops;
 /**
  * Created by janusz on 20.01.17.
  */
-public class OperationStatePending implements OperationStatus {
+public class OperationStatePending implements OperationState {
     @Override
     public boolean isExecutable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -23,4 +23,7 @@ public class OperationStatePending implements OperationStatus {
     public boolean isFailed() {
         return false;
     }
+
+    @Override
+    public boolean isOpen() { return false; }
 }

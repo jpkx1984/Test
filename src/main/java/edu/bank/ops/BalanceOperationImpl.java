@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by jkrysztofiak on 2016-11-19.
  */
-public abstract class BalanceOperationImpl extends OperationImpl implements BalanceOperation {
+public abstract class BalanceOperationImpl extends OperationBase implements BalanceOperation {
     private BigDecimal amount;
     private Account account;
 

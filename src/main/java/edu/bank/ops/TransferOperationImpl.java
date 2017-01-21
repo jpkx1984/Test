@@ -1,7 +1,7 @@
 package edu.bank.ops;
 
 import edu.bank.Account;
-import edu.bank.BankHandle;
+import edu.bank.BankPrivateData;
 import edu.bank.MutableAccount;
 
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * Created by jkrysztofiak on 2016-11-05.
  */
-public class TransferOperationImpl extends OperationImpl implements TransferOperation {
+public class TransferOperationImpl extends OperationBase implements TransferOperation {
     private Account source;
     private Account target;
 
@@ -26,14 +26,14 @@ public class TransferOperationImpl extends OperationImpl implements TransferOper
     }
 
     @Override
-    public void execute(BankHandle bh) {
+    public void execute(BankPrivateData bh) {
         if (!this.isExecutable())
             return;
 
-        final MutableAccount a = bh.getMutableAccount(this.getSource());
-        final MutableAccount b = bh.getMutableAccount(this.getTarget());
+        final MutableAccount a = bh.asMutableAccount(this.getSource());
+        final MutableAccount b = bh.asMutableAccount(this.getTarget());
 
-        if (a.getAvailableFunds().compareTo(this.getAmount()) >= 0) {
+        if (a.getAvailableFunds().compareTo(this.getAmount()) >= 0 && a.isBalanceMutable() && b.isBalanceMutable()) {
             a.setBalance(a.getBalance().subtract(this.getAmount()));
             b.setBalance(b.getBalance().add(this.getAmount()));
 
